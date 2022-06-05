@@ -1,0 +1,42 @@
+[
+    {
+        "name":"Shahriar",
+        "product":"Wheel, Head Light",
+        "review":"All the products are good"
+    },
+    {
+        "name":"Salman",
+        "product":"Tail Light",
+        "review":"I am so glad with them"
+    },
+    {
+        "name":"Ibrahim",
+        "product":"Air Filter",
+        "review":"The metal wuality is average"
+    },
+    {
+        "name":"Rana",
+        "product":"Head Light",
+        "review":"I took headlight. But it was not so good"
+    },
+    {
+        "name":"Abdur Rahman",
+        "product":"Tail Light",
+        "review":"Tail light design is not match with piture"
+    },
+    {
+        "name":"Manha",
+        "product":"Wheel",
+        "review":"Wheel is good not best"
+    },
+    {
+        "name":"Rayan Ahmed",
+        "product":"Wheel, Head Light",
+        "review":"The price is good and product also"
+    },
+    {
+        "name":"Ismail",
+        "product":"Wheel",
+        "review":"The wheel is not so heavy. It is good with price"
+    }
+]

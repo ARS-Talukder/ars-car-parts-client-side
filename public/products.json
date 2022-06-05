@@ -1,0 +1,70 @@
+[
+    {
+        "name":"Wheel",
+        "img":"https://i.ibb.co/s6hyRRY/wheel.jpg",
+        "sd":"This wheel is made by totally original metal",
+        "price":"12000 BDT",
+        "minimum":"100",
+        "available":"300"
+
+    },
+    {
+        "name":"Air Filter",
+        "img":"https://i.ibb.co/7Ykpkwy/air-filter.jpg",
+        "sd":"It can filter 90% of air",
+        "price":"4500 BDT",
+        "minimum":"150",
+        "available":"400"
+
+    },
+    {
+        "name":"Speed Meter",
+        "img":"https://i.ibb.co/6DgtgC8/speed-meter.jpg",
+        "sd":"There are many design of speed meter",
+        "price":"8000 BDT",
+        "minimum":"100",
+        "available":"2000"
+
+    },
+    {
+        "name":"Head Light(Red)",
+        "img":"https://i.ibb.co/5F9YzpQ/head-light-red.jpg",
+        "sd":"The Headlight is LED",
+        "price":"3000 BDT",
+        "minimum":"450",
+        "available":"3000"
+
+    },
+    {
+        "name":"Head Light(White)",
+        "img":"https://i.ibb.co/t3L2RFv/head-light-white.jpg",
+        "sd":"The Headlight is LED",
+        "price":"35000 BDT",
+        "minimum":"450",
+        "available":"3000"
+
+    },
+    {
+        "name":"Tail Light",
+        "img":"https://i.ibb.co/gJt7PXb/tail-light.jpg",
+        "sd":"The Tail Light is LED",
+        "price":"3000 BDT",
+        "minimum":"450",
+        "available":"3000"
+
+    },
+    {
+        "name":"Looking Glass",
+        "img":"https://i.ibb.co/W36SPwx/looking-glass.jpg",
+        "sd":"Loooking glass can be turned around 45 degree",
+        "price":"850 BDT",
+        "minimum":"200",
+        "available":"1250"
+
+    }
+    
+]
+
+
+
+
