@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
+import Loading from '../Shared/Loading';
 import Tool from './Tool';
 
 const Tools = () => {
-    const [tools, setTools] = useState([])
-    useEffect(() => {
-        fetch('https://lit-cove-72616.herokuapp.com/products')
-            .then(res => res.json())
-            .then(data => setTools(data))
-    }, [])
+    const {data:tools, isLoading}=useQuery("allTools",()=>fetch('https://lit-cove-72616.herokuapp.com/products').then(res=>res.json()));
+    if(isLoading){
+        return <Loading></Loading>
+    }
+    
     return (
         <div className='mt-4'>
             <h2 className='text-2xl text-orange-500 font-bold mb-4 underline'>Tools</h2>
