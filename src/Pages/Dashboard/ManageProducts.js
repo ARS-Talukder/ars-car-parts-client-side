@@ -1,40 +1,32 @@
 import React, { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
+import Loading from '../Shared/Loading';
+import ManageProduct from './ManageProduct';
 
 const ManageProducts = () => {
-    const [products, setProducts] = useState([])
-    useEffect(() => {
-        fetch('https://lit-cove-72616.herokuapp.com/products')
-            .then(res => res.json())
-            .then(data => {
-                setProducts(data)
-            })
-    }, [])
-    const handleDelete=id=>{
-        const proceed=window.confirm('Do You want to delete?')
-        if(proceed){
-            const url=`https://lit-cove-72616.herokuapp.com/products/${id}`;
-            fetch(url,{
-                method:'DELETE'
-            })
-            .then(res=>res.json())
-            .then(data=>{
-                if(data.deletedCount>0){
-                    const remaining=products.filter(p=>p._id!==id);
-                    setProducts(remaining)
-                }
-            })
-        }
+    const { data: products, isLoading, refetch } = useQuery("allProducts", () => fetch('http://localhost:5000/products').then(res => res.json()));
+    if (isLoading) {
+        return <Loading></Loading>
     }
+
     return (
         <div>
-            <h2 className='text-xl font-bold underline'>All Products</h2>
-            {
-                products.map(product=>
-                <h2 className='text-xl my-4 font-bold text-blue-500'>
-                    {product.name}
-                    <span onClick={()=>handleDelete(product._id)} className='btn ml-4'>delete</span>
-                </h2>)
-            }
+            <h2 className='text-blue-500 text-2xl font-bold my-4 underline'>All Orders</h2>
+            <table className="table w-full">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Product Name</th>
+                        <th>Manage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        products.map((product, index) => <ManageProduct key={product._id} index={index} product={product} refetch={refetch}></ManageProduct>)
+                    }
+
+                </tbody>
+            </table>
         </div>
     );
 };

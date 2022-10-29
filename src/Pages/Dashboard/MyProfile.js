@@ -1,60 +1,54 @@
 import React from 'react';
 import { useAuthState, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import { TiEdit } from "react-icons/ti";
+import Loading from '../Shared/Loading';
 
 const MyProfile = () => {
     const [user, loading] = useAuthState(auth);
-    const [updateProfile, updating, error] = useUpdateProfile(auth);
-    console.log(user)
-    const handleUpdate = async event => {
-        event.preventDefault();
-        const displayName = event.target.name.value;
-        const phoneNumber = event.target.phone.value;
-        const photoURL = event.target.photo.value;
-        console.log(phoneNumber,photoURL)
-        await updateProfile({ displayName,  phoneNumber,photoURL });
-        alert('Updated profile');
+    const [updateProfile, updating, uError] = useUpdateProfile(auth);
+    if (loading || updating) {
+        return <Loading></Loading>
+    }
+    const handleNameChange = () => {
+        let proceed = window.prompt("Enter Your New Name");
+        if (proceed === null || proceed === "") {
+            return
+        }
+        else {
+            updateProfile({ displayName: proceed });
+        }
     }
     return (
         <div>
-            <h2 className='my-4 text-2xl font-bold text-red-400'>User Information</h2>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <div className='flex justify-center'>
+                <div className="border-2 rounded border-gray-500 p-1">
+                    <div className="w-52 h-48 rounded-full">
+                        <img className='h-full w-full' src="https://i.ibb.co/ctFS6Qt/login-Avatar.png" alt='Profile_Picture' />
+                    </div>
+                </div>
+            </div>
+            <div className="overflow-x-auto">
+                <table className="table w-full">
 
                     <thead>
                         <tr>
-
-                            <th>Name</th>
+                            <th>Your Name</th>
                             <th>Email</th>
-                            <th>Phone Number</th>
-                            <th>LinkedIn profie link</th>
+
                         </tr>
                     </thead>
                     <tbody>
-
                         <tr>
-
-                            <td>{user?.displayName}</td>
-                            <td>{user?.email}</td>
-                            <td>{user?.phoneNumber || "not Available"}</td>
-                            <td>{user?.photoURL || "not Available"}</td>
+                            <td className='px-4 flex items-center'>
+                                <span>{user?.displayName}</span>
+                                <button className='ml-2' onClick={handleNameChange}><span className='text-3xl text-blue-800'><TiEdit></TiEdit></span></button>
+                            </td>
+                            <td>{user?.email} </td>
                         </tr>
-
-
                     </tbody>
                 </table>
             </div>
-            <h2 className='my-4 text-2xl font-bold text-red-400'>Update Information</h2>
-            <form onSubmit={handleUpdate} action="">
-                <input type="text" placeholder="Update Your Name" name='name' class="input input-bordered w-full max-w-xs my-2" />
-                <br />
-                <input type="text" placeholder="Update or Give Phone Number" name='phone' class="input input-bordered w-full max-w-xs" />
-                <br />
-                <input type="text" placeholder="LinkedIn profile link" name='photo' class="input input-bordered w-full max-w-xs my-2" />
-                <br />
-                <input type="submit" value="Update" class="btn w-full max-w-xs mt-2" />
-
-            </form>
         </div>
     );
 };

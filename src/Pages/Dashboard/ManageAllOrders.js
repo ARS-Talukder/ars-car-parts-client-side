@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
+import Loading from '../Shared/Loading';
 import ManageOrder from './ManageOrder';
 
 const ManageAllOrders = () => {
-    const [orders, setOrders] = useState([]);
-    useEffect(() => {
-        fetch('https://lit-cove-72616.herokuapp.com/orders2')
-            .then(res => res.json())
-            .then(data => setOrders(data))
-    }, [])
-    console.log(orders)
+    const { data: orders, isLoading, refetch } = useQuery("allTools", () => fetch('http://localhost:5000/orders2').then(res => res.json()));
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+    // console.log(orders)
     return (
-        <div class="overflow-x-auto">
+        <div className="overflow-x-auto">
             <h2 className='text-blue-500 text-2xl font-bold my-4 underline'>All Orders</h2>
-            <table class="table w-full">
+            <table className="table w-full">
                 {/* <!-- head --> */}
                 <thead>
                     <tr>
@@ -20,19 +20,14 @@ const ManageAllOrders = () => {
                         <th>Customer</th>
                         <th>Product</th>
                         <th>Amount</th>
+                        <th>Total Price</th>
+                        <th>Cancel Order</th>
                     </tr>
                 </thead>
                 <tbody>
                     {/* <!-- row 1 --> */}
                     {
-                        orders.map((order,index) =>
-                            <tr key={order._id}>
-                                <th>{index+1}</th>
-                                <td>{order.clientName}</td>
-                                <td>{order.productName}</td>
-                                <td>{order.orderAmount}</td>
-                            </tr>
-                        )
+                        orders.map((order, index) => <ManageOrder key={order._id} order={order} index={index} refetch={refetch}></ManageOrder>)
                     }
 
 

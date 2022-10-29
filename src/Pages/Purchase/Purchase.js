@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const Purchase = () => {
     const { id } = useParams();
     const [user, loading, error] = useAuthState(auth);
+    const navigate = useNavigate();
 
     const [product, setProduct] = useState({})
     useEffect(() => {
-        fetch(`https://lit-cove-72616.herokuapp.com/product/${id}`)
+        fetch(`http://localhost:5000/product/${id}`)
             .then(res => res.json())
             .then(data => setProduct(data))
 
@@ -31,12 +33,12 @@ const Purchase = () => {
         const minimumQuantity = parseInt(minimum);
         const clientName = event.target.name.value;
         const productName = name;
-        const productPrice=price;
+        const productPrice = price;
         const email = user.email;
         const address = event.target.address.value;
         const phone = event.target.phone.value;
         const orderAmount = event.target.orderAmount.value;
-        const order = { clientName, productName, email, address, phone, orderAmount,productPrice };
+        const order = { clientName, productName, email, address, phone, orderAmount, productPrice };
         if (orderAmount > availableQuantity) {
             alert('You are crossing available quantity');
         }
@@ -44,7 +46,7 @@ const Purchase = () => {
             alert('You need to order minimum pcs ' + minimum);
         }
         else {
-            fetch('https://lit-cove-72616.herokuapp.com/orders2', {
+            fetch('http://localhost:5000/orders2', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -53,7 +55,8 @@ const Purchase = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    alert('Order Successfull')
+                    toast.success("Order Placed Successfully");
+                    navigate("/")
                 })
         }
 

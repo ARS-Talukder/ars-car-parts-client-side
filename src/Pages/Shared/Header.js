@@ -13,10 +13,10 @@ const Header = () => {
         navigate('/')
     };
     const menuItems = <>
-        <li><Link to='/'>Home</Link></li>
-        <li><Link to='/dashboard'>Dashboard</Link></li>
-        <li><Link to='/myport'>My Portfolio</Link></li>
-        <li><Link to='/blogs'>Blogs</Link></li>
+        <li className='px-3'><Link to='/'>Home</Link></li>
+        <li className='px-3'><Link to='/dashboard'>Dashboard</Link></li>
+        <li className='px-3'><Link to='/reviews'>Reviews</Link></li>
+        <li className='px-3'><Link to='/blogs'>Blogs</Link></li>
         {
             user ?
                 <button onClick={logout} className="btn btn-ghost">Sign Out</button>
@@ -38,7 +38,7 @@ const Header = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">ARS Car Parts</a>
+                <Link className="btn btn-ghost normal-case text-xl" to='/'>ARS Car Parts</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">

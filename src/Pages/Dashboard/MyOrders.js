@@ -1,58 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
+import Loading from '../Shared/Loading';
+import MyOrder from './MyOrder';
 
 const MyOrders = () => {
     const [user, loading, error] = useAuthState(auth);
-    const [orders, setOrders] = useState([]);
-    useEffect(() => {
-        fetch(`https://lit-cove-72616.herokuapp.com/orders2/${user.email}`)
-            .then(res => res.json())
-            .then(data => setOrders(data))
-    }, [])
-    console.log(orders)
+    const { data: orders, isLoading, refetch } = useQuery("allTools", () => fetch(`http://localhost:5000/orders2/${user.email}`).then(res => res.json()));
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+
     return (
-        <div class="overflow-x-auto mt-4">
-            <table class="table w-full">
+        <div className="overflow-x-auto mt-4">
+            <table className="table w-full">
                 {/* <!-- head --> */}
                 <thead>
                     <tr>
                         <th></th>
                         <th>Product Name</th>
-                        <th>Payment</th>
-                        <th>Favorite Color</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                        <th>Cancel Order</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {/* <!-- row 1 --> */}
                     {
-                        orders.map((order, index) =>
-                            <tr key={order._id}>
-                                <td>{index + 1}</td>
-                                <td>{order.productName}</td>
-                                <td>
-                                    {(order.productPrice && !order.paid)
-                                        &&
-                                        // <Link  to={`/dashboard/payment/${order._id}`}>
-                                        //     <button className='btn btn-sm btn-success'>pay</button>
-                                        // </Link>
-                                        <button className='btn btn-sm btn-success'>pay</button>
-                                    }
-                                    {/* {(order.productPrice && order.paid)
-                                        &&
-                                        <div>
-                                            <p><span className='text-success'>Paid</span></p>
-                                            <p>Transaction id:
-                                                <span className='text-success'>
-                                                    {order.transactionId}
-                                                </span>
-                                            </p>
-                                        </div>
-                                    } */}
-                                </td>
-                                <td>Blue</td>
-                            </tr>)
+                        orders.map((order, index) => <MyOrder key={order._id} order={order} index={index} refetch={refetch}></MyOrder>)
                     }
 
 

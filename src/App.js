@@ -10,7 +10,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NotFound from './Pages/Shared/NotFound';
 import Blogs from './Pages/Others/Blogs';
-import MyPortfolio from './Pages/Others/MyPortfolio';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import MyOrders from './Pages/Dashboard/MyOrders';
 import AddAReview from './Pages/Dashboard/AddAReview';
@@ -20,7 +19,7 @@ import AddAProduct from './Pages/Dashboard/AddAProduct';
 import MakeAdmin from './Pages/Dashboard/MakeAdmin';
 import ManageProducts from './Pages/Dashboard/ManageProducts';
 import RequireAdmin from './Pages/Login/RequireAdmin';
-import Payment from './Pages/Dashboard/Payment';
+import Reviews from './Pages/Others/Reviews';
 
 function App() {
   return (
@@ -31,10 +30,8 @@ function App() {
 
         <Route path='/purchase/:id' element={<RequireAuth><Purchase></Purchase></RequireAuth>}></Route>
         <Route path='/dashboard' element={<RequireAuth><Dashboard></Dashboard></RequireAuth>}>
-          
+          <Route index element={<MyProfile></MyProfile>}></Route>
           <Route path="myorders/:email" element={<MyOrders></MyOrders>}></Route>
-          <Route path="payment/:id" element={<Payment></Payment>}></Route>
-          <Route path="myprofile" element={<MyProfile></MyProfile>}></Route>
           <Route path="addareview" element={<AddAReview></AddAReview>}></Route>
           <Route path="addaproduct" element={<RequireAdmin><AddAProduct></AddAProduct></RequireAdmin>}></Route>
 
@@ -46,7 +43,7 @@ function App() {
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<Signup></Signup>}></Route>
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
-        <Route path='/myport' element={<MyPortfolio></MyPortfolio>}></Route>
+        <Route path='/reviews' element={<Reviews></Reviews>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
 
 
