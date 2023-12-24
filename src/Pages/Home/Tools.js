@@ -3,11 +3,11 @@ import Loading from '../Shared/Loading';
 import Tool from './Tool';
 
 const Tools = () => {
-    const {data:tools, isLoading}=useQuery("allTools",()=>fetch('http://localhost:5000/products').then(res=>res.json()));
-    if(isLoading){
+    const { data: tools, isLoading } = useQuery("allTools", () => fetch('http://localhost:5000/products').then(res => res.json()));
+    if (isLoading) {
         return <Loading></Loading>
     }
-    
+
     return (
         <div className='mt-4'>
             <h2 className='text-2xl text-orange-500 font-bold mb-4 underline'>Tools</h2>

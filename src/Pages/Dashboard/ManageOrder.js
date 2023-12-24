@@ -23,6 +23,7 @@ const ManageOrder = ({ order, index, refetch }) => {
         <tr key={order._id}>
             <th>{index + 1}</th>
             <td>{order.clientName}</td>
+            <td>{order.email}</td>
             <td>{order.productName}</td>
             <td>{order.orderAmount}</td>
             <td>{total}</td>
