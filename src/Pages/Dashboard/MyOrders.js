@@ -9,7 +9,7 @@ import MyOrder from './MyOrder';
 
 const MyOrders = () => {
     const [user, loading, error] = useAuthState(auth);
-    const { data: orders, isLoading, refetch } = useQuery("allTools", () => fetch(`http://localhost:5000/orders2/${user.email}`).then(res => res.json()));
+    const { data: orders, isLoading, refetch } = useQuery("allTools", () => fetch(`https://ars-car-parts-server-side.onrender.com/orders2/${user.email}`).then(res => res.json()));
 
     if (isLoading) {
         return <Loading></Loading>

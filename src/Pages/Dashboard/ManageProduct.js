@@ -6,7 +6,7 @@ const ManageProduct = ({ product, index, refetch }) => {
     const handleDelete = id => {
         const proceed = window.confirm('Do You want to delete?')
         if (proceed) {
-            const url = `http://localhost:5000/products/${id}`;
+            const url = `https://ars-car-parts-server-side.onrender.com/products/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

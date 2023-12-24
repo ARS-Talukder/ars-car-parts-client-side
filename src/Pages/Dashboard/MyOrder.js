@@ -6,7 +6,7 @@ const MyOrder = ({ order, index, refetch }) => {
     const handleCancelAppointment = () => {
         const proceed = window.confirm("Do You want to delete order?");
         if (proceed) {
-            fetch(`http://localhost:5000/order-delete?id=${order._id}`, {
+            fetch(`https://ars-car-parts-server-side.onrender.com/order-delete?id=${order._id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

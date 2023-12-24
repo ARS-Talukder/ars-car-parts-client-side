@@ -4,7 +4,7 @@ import Loading from '../Shared/Loading';
 import Review from './Review';
 
 const Reviews = () => {
-    const {data:reviews, isLoading}=useQuery("allReviews",()=>fetch('http://localhost:5000/reviews').then(res=>res.json()));
+    const {data:reviews, isLoading}=useQuery("allReviews",()=>fetch('https://ars-car-parts-server-side.onrender.com/reviews').then(res=>res.json()));
     if(isLoading){
         return <Loading></Loading>
     }

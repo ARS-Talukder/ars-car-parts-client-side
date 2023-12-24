@@ -4,7 +4,7 @@ import Loading from '../Shared/Loading';
 import UsersRow from './UsersRow';
 
 const MakeAdmin = () => {
-    const { data: users, isLoading, refetch } = useQuery("allProducts", () => fetch('http://localhost:5000/user').then(res => res.json()));
+    const { data: users, isLoading, refetch } = useQuery("allProducts", () => fetch('https://ars-car-parts-server-side.onrender.com/user').then(res => res.json()));
     if (isLoading) {
         return <Loading></Loading>
     }

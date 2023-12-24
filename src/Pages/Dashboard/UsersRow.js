@@ -12,7 +12,7 @@ const UsersRow = ({ user, refetch }) => {
             return
         }
         else if (proceed === 'admin') {
-            fetch(`http://localhost:5000/user/admin/${email}`, {
+            fetch(`https://ars-car-parts-server-side.onrender.com/user/admin/${email}`, {
                 method: 'PUT',
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -35,7 +35,7 @@ const UsersRow = ({ user, refetch }) => {
             return
         }
         else if (proceed === 'remove') {
-            fetch(`http://localhost:5000/user/remove/${email}`, {
+            fetch(`https://ars-car-parts-server-side.onrender.com/user/remove/${email}`, {
                 method: 'PUT',
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`

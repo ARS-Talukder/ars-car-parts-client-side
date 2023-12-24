@@ -10,7 +10,7 @@ const AddAReview = () => {
         const product = event.target.product.value;
         const review = event.target.review.value;
         const reviews = { name, product, review };
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://ars-car-parts-server-side.onrender.com/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

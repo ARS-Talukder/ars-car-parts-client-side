@@ -11,7 +11,7 @@ const Purchase = () => {
 
     const [product, setProduct] = useState({})
     useEffect(() => {
-        fetch(`http://localhost:5000/product/${id}`)
+        fetch(`https://ars-car-parts-server-side.onrender.com/product/${id}`)
             .then(res => res.json())
             .then(data => setProduct(data))
 
@@ -46,7 +46,7 @@ const Purchase = () => {
             alert('You need to order minimum pcs ' + minimum);
         }
         else {
-            fetch('http://localhost:5000/orders2', {
+            fetch('https://ars-car-parts-server-side.onrender.com/orders2', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

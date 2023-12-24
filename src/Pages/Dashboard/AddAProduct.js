@@ -14,7 +14,7 @@ const AddAProduct = () => {
         const minimum = event.target.minimum.value;
         const available = event.target.available.value;
         const products = { name, img, sd, price, minimum, available };
-        fetch('http://localhost:5000/products', {
+        fetch('https://ars-car-parts-server-side.onrender.com/products', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

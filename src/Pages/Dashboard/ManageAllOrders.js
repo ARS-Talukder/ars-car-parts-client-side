@@ -3,7 +3,7 @@ import Loading from '../Shared/Loading';
 import ManageOrder from './ManageOrder';
 
 const ManageAllOrders = () => {
-    const { data: orders, isLoading, refetch } = useQuery("allOrders", () => fetch('http://localhost:5000/orders2').then(res => res.json()));
+    const { data: orders, isLoading, refetch } = useQuery("allOrders", () => fetch('https://ars-car-parts-server-side.onrender.com/orders2').then(res => res.json()));
 
     if (isLoading) {
         return <Loading></Loading>
